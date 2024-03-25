@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %} {{nombre}} {% endblock %}
+
+{% block content %}
+
+<section class="col-md-6 m-auto">
+    {% include 'includes/nav.html' %}
+</section>
+
+<section class="col-md-6 m-auto head-index">
+
+</section>
+
+<section class="col-md-6 m-auto Info p-4">
+    <areticle class="card card-body">
+        <h1 class="text-center">Quienes somos ?</h1>
+        <p>
+            {{descripcion}}
+        </p>
+    </areticle>
+    <article class="text-center">
+        <a href="#Search" class="btn btn-light btn-lg">Busqueda</a>
+    </article>
+</section>
+
+<section class="col-md-6 m-auto p-4 Search" id="Search">
+    <hr>
+    <h3>
+        Busqueda
+    </h3>
+    <p>
+        En esta sección puedes encontrar filtros por etiquetas o materias de todas nuestras publicaciones, para poder hacer una busqueda mas intuitiva y amena
+    </p>
+    <article>
+        <h3>Etiquetas</h3>
+        <section class="card card-body">
+            <table class="table table-stripped w-100" id="Etiquetas">
+                <thead>
+                    <th>Etiqueta</th>
+                </thead>
+                <tbody>
+                    {% for etiqueta in etiquetas %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'Blog' %}?q1=etiqueta&q2={{etiqueta.etiqueta}}">
+                                {{etiqueta.etiqueta}}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </article>
+    <hr>
+    <article>
+        <h3>Materias</h3>
+        <section class="card card-body">
+            <table class="table table-stripped w-100" id="Materias">
+                <thead>
+                    <th>Materia</th>
+                </thead>
+                <tbody>
+                    {% for materia in materias %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'Blog' %}?q1=materia&q2={{materia.materia}}">
+                                {{materia.materia}}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </article>
+</section>
+
+<section class="col-md-6 m-auto text-center">
+    {% include 'includes/footer.html' %}
+</section>
+
+{% endblock %}

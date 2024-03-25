@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} ESE (blog) {% endblock %}
+
+{% block content %}
+
+<section class="col-md-6 m-auto">
+    {% include 'includes/nav.html' %}
+</section>
+
+<section class="col-md-6 m-auto head-index">
+
+</section>
+
+<section class="col-md-6 m-auto Info p-4">
+    <areticle class="card card-body">
+        <h1 class="text-center">Blog</h1>
+        <article class="d-flex gap-5 m-auto text-center">
+            <section> <p>{{tema}}</p> </section>
+            <section> <p>{{contador}} publicaciones</p> </section>
+        </article>
+    </areticle>
+</section>
+
+<section class="col-md-6 m-auto p-4 Search" id="Search">
+    <hr>
+    <h3>
+        Publicaciones
+    </h3>
+    <section class="card card-body">
+        <table class="table table-stripped w-100" id="Posts">
+            <thead>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Fecha</th>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td>
+                        <a href="{% url 'Post' post.id %}">{{post.titulo}}</a>
+                    </td>
+                    <td> {{post.autor}} </td>
+                    <td> {{post.actualizacion}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</section>
+        
+<section class="col-md-6 m-auto text-center">
+    {% include 'includes/footer.html' %}
+</section>
+
+{% endblock %}
